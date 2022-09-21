@@ -31,7 +31,7 @@ def token_required(func):
     def decorated(*args, **kwargs):
         token = request.args.get('token')
         if not token:
-            return jsonify({'Alert!': 'Token is missing!'}), 401
+            return jsonify({'Alert!': 'Token is missing yes!'}), 401
 
         try:
 
@@ -82,7 +82,7 @@ def login():
             'expiration': str(datetime.utcnow() + timedelta(seconds=60))
         },
             app.config['SECRET_KEY'])
-        return jsonify({'token': token.decode('utf-8')})
+        return jsonify({'token': token})
     else:
         return make_response('Unable to verify', 403, {'WWW-Authenticate': 'Basic realm: "Authentication Failed "'})
 
